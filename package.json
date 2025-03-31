@@ -1,6 +1,6 @@
 {
   "homepage": "https://anjaliravi2304.github.io/QR-Restaurant-Menu",
-  "name": "tapxtream",
+  "name": "qrmenu",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -61,6 +61,6 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "gh-pages": "^6.1.1"
+    "gh-pages": "^6.3.0"
   }
 }
