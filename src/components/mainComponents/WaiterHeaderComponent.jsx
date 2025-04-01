@@ -20,7 +20,7 @@ const WaiterHeaderComponent = () => {
         if (user.type !== "waiter") {
             console.log("not loggedin");
             LsService.removeItem("user");
-            navigate(/QR-Restaurant-Menu/);
+            navigate("/QR-Restaurant-Menu/");
         }
     }, []);
 
@@ -63,7 +63,7 @@ const WaiterHeaderComponent = () => {
                     ml: 3,
                     cursor: "pointer",
                 }}
-                onClick={() => navigate('/')}
+                onClick={() => navigate("/QR-Restaurant-Menu/")}
             />
 
             {isMobile ? (

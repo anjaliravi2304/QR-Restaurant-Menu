@@ -8,7 +8,7 @@ const LogoutButtonComp = () => {
 
     const onLogoutClick = () => {
         LsService.removeItem("user");
-        navigate('/');
+        navigate("/QR-Restaurant-Menu/");
     };
 
     return (

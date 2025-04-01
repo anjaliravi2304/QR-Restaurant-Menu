@@ -53,7 +53,7 @@ const AdminHeaderComponent = () => {
                     ml: 3,
                     cursor: "pointer",
                 }}
-                onClick={() => navigate('/')}
+                onClick={() => navigate("/QR-Restaurant-Menu/")}
             />
 
             {isMobile ? (

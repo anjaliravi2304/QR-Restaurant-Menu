@@ -83,7 +83,7 @@ const QRLoginPage = () => {
                     display: { md: "none", xs: "block" },
                     pl: 2, paddingTop: "10px"
                 }}
-                onClick={() => navigate('/')} />
+                onClick={() => navigate("/QR-Restaurant-Menu/")} />
 
             <Box
                 sx={{
@@ -109,7 +109,7 @@ const QRLoginPage = () => {
                                 // ml: 2,
                                 cursor: "pointer",
                             }}
-                            onClick={() => navigate('/')}
+                            onClick={() => navigate("/QR-Restaurant-Menu/")}
                         />
                     </Box>
                 </Box>
