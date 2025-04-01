@@ -28,3 +28,6 @@ Your app is ready to be deployed!
 
 ### For ICONS use this url
 https://www.pngwing.com/
+
+#### My project is live in
+https://anjaliravi2304.github.io/QR-Restaurant-Menu
