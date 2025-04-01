@@ -4,7 +4,7 @@ import { UserAuthContextProvider } from "./context/UserAuthContext";
 import PageNotFound from "./Pages/PageNotFound";
 
 import QRLoginPage from "./qrMain/QRLoginPage";
-import AdminDashboard from "./menuAdmin/AdminDashboard";
+import AdminDashboard from "./menuAdmin/QR-Restaurant-Menu/admindashboard";
 import ManageWaiters from "./menuAdmin/ManageWaiters";
 import ManageTables from "./menuAdmin/ManageTables";
 import AddMenuItems from "./menuAdmin/AddMenuItems";
@@ -21,22 +21,22 @@ const Router = () => {
   return (
     <UserAuthContextProvider>
       <Routes>
-        <Route path="/" element={<QRLoginPage />} />
-        <Route path="/404" element={<PageNotFound />} />
-        <Route path="/customer-menu/:id" element={<CustomerMenu />} />
+        <Route path="/QR-Restaurant-Menu/" element={<QRLoginPage />} />
+        <Route path="/QR-Restaurant-Menu/404" element={<PageNotFound />} />
+        <Route path="/QR-Restaurant-Menu/customer-menu/:id" element={<CustomerMenu />} />
 
         <Route element={<ProtectedRoute />}>
-          <Route path="/admindashboard" element={<AdminDashboard />} />
-          <Route path="/manage-waiter" element={<ManageWaiters />} />
-          <Route path="/manage-table" element={<ManageTables />} />
-          <Route path="/add-menu" element={<AddMenuItems />} />
-          <Route path="/manage-menu" element={<ManageMenu />} />
-          <Route path="/track-bills" element={<TrackBills />} />
+          <Route path="/QR-Restaurant-Menu/admindashboard" element={<AdminDashboard />} />
+          <Route path="/QR-Restaurant-Menu/manage-waiter" element={<ManageWaiters />} />
+          <Route path="/QR-Restaurant-Menu/manage-table" element={<ManageTables />} />
+          <Route path="/QR-Restaurant-Menu/add-menu" element={<AddMenuItems />} />
+          <Route path="/QR-Restaurant-Menu/manage-menu" element={<ManageMenu />} />
+          <Route path="/QR-Restaurant-Menu/track-bills" element={<TrackBills />} />
 
-          <Route path="/waiter-dashboard" element={<WaiterDashboard />} />
-          <Route path="/manage-orders" element={<ManageOrders />} />
-          <Route path="/view-update-order/:id" element={<ViewUpdateOrder />} />
-          <Route path="/waiter-view-bills" element={<WaiterViewBills />} />
+          <Route path="/QR-Restaurant-Menu/waiter-dashboard" element={<WaiterDashboard />} />
+          <Route path="/QR-Restaurant-Menu/manage-orders" element={<ManageOrders />} />
+          <Route path="/QR-Restaurant-Menu/view-update-order/:id" element={<ViewUpdateOrder />} />
+          <Route path="/QR-Restaurant-Menu/waiter-view-bills" element={<WaiterViewBills />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>

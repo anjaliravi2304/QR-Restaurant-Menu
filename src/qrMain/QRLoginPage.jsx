@@ -24,10 +24,10 @@ const QRLoginPage = () => {
             // console.log(user);
             if (user.type === "admin") {
                 // console.log("admin");
-                navigate("/admindashboard");
+                navigate("/QR-Restaurant-Menu/admindashboard");
             } else if (user.type === "waiter") {
                 // console.log("waiter");
-                navigate("/waiter-dashboard");
+                navigate("/QR-Restaurant-Menu/waiter-dashboard");
                 // navigate("/waiter");
             }
         }
@@ -53,11 +53,11 @@ const QRLoginPage = () => {
                 });
                 if (userData.type === "admin") {
                     // console.log("admin");
-                    navigate("/admindashboard");
+                    navigate("/QR-Restaurant-Menu/admindashboard");
                 } else if (userData.type === "waiter") {
                     // console.log("waiter");
                     if (userData.active) {
-                        navigate("/waiter-dashboard");
+                        navigate("/QR-Restaurant-Menu/waiter-dashboard");
                     } else {
                         alert("Waiter job fired, You can't login, contact admin");
                         // Optionally clear any stored user data

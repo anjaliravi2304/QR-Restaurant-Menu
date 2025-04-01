@@ -20,7 +20,7 @@ const WaiterHeaderComponent = () => {
         if (user.type !== "waiter") {
             console.log("not loggedin");
             LsService.removeItem("user");
-            navigate("/");
+            navigate(/QR-Restaurant-Menu/);
         }
     }, []);
 
@@ -35,11 +35,11 @@ const WaiterHeaderComponent = () => {
     const isActiveRoute = (route) => location.pathname === route;
 
     const navItems = [
-        { label: "Waiter Dashboard", route: "/waiter-dashboard" },
-        { label: "Manage Orders", route: "/manage-orders" },
-        { label: "View Bills", route: "/waiter-view-bills" },
-        // { label: "Add Menu", route: "/add-menu" },
-        // { label: "Manage Menu", route: "/manage-menu" },
+        { label: "Waiter Dashboard", route: "/QR-Restaurant-Menu/waiter-dashboard" },
+        { label: "Manage Orders", route: "/QR-Restaurant-Menu/manage-orders" },
+        { label: "View Bills", route: "/QR-Restaurant-Menu/waiter-view-bills" },
+        // { label: "Add Menu", route: "/QR-Restaurant-Menu/add-menu" },
+        // { label: "Manage Menu", route: "/QR-Restaurant-Menu/manage-menu" },
         
         { isComponent: true, component: <LogoutButtonComp /> },
     ];

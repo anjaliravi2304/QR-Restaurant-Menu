@@ -27,7 +27,7 @@ const ManageTables = () => {
         if (user.type !== "admin") {
             console.log("not loggedin");
             LsService.removeItem("user");
-            navigate("/");
+            navigate(/QR-Restaurant-Menu/);
         }
         fetchTablesData();
     }, []);

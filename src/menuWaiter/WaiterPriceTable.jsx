@@ -145,7 +145,7 @@ export default function WaiterPriceTable({ addedItems, tableName, tableId, onRem
                 await updateDoc(menuRef, {
                     order_placed: false
                 });
-                navigate("/manage-orders");
+                navigate("/QR-Restaurant-Menu/manage-orders");
                 return;
             }
 
@@ -169,7 +169,7 @@ export default function WaiterPriceTable({ addedItems, tableName, tableId, onRem
                     order_placed: false
                 });
 
-                navigate("/manage-orders");
+                navigate("/QR-Restaurant-Menu/manage-orders");
 
             } catch (error) {
                 console.error("Error creating bill:", error);
