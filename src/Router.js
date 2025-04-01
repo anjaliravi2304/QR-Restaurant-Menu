@@ -23,7 +23,7 @@ const Router = () => {
       <Routes>
         <Route path="/QR-Restaurant-Menu/" element={<QRLoginPage />} />
         <Route path="/QR-Restaurant-Menu/404" element={<PageNotFound />} />
-        <Route path="/QR-Restaurant-Menu/customer-menu/:id" element={<CustomerMenu />} />
+        <Route path="/customer-menu/:id" element={<CustomerMenu />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path="/QR-Restaurant-Menu/admindashboard" element={<AdminDashboard />} />
