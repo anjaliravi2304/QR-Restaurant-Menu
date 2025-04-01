@@ -58,8 +58,9 @@ class CustomerMenu extends React.Component {
     }
 
     render() {
+    console.log(this.props.params.id);
         return (
-            <BaseComponent collectionName="table" render={this.renderTable} params={this.props.params} navigate={this.props.navigate} />
+            <BaseComponent collectionName="table" render={this.renderTable} params={this.props.params.id} navigate={this.props.navigate} />
         );
     }
 }
