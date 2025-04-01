@@ -4,7 +4,7 @@ import { UserAuthContextProvider } from "./context/UserAuthContext";
 import PageNotFound from "./Pages/PageNotFound";
 
 import QRLoginPage from "./qrMain/QRLoginPage";
-import AdminDashboard from "./menuAdmin/QR-Restaurant-Menu/admindashboard";
+import AdminDashboard from "./menuAdmin/AdminDashboard";
 import ManageWaiters from "./menuAdmin/ManageWaiters";
 import ManageTables from "./menuAdmin/ManageTables";
 import AddMenuItems from "./menuAdmin/AddMenuItems";
