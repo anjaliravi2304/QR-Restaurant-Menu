@@ -41,7 +41,6 @@ const ManageTables = () => {
             const querySnapshot = await getDocs(q);
 
             const fetchedtables = querySnapshot.docs.map((doc) => ({
-                id: doc.id,
                 ...doc.data(),
             }));
             setTablesList(fetchedtables);
@@ -56,7 +55,7 @@ const ManageTables = () => {
             await updateDoc(tableRef, { active: !currentStatus });
             fetchTablesData(); // Refresh data after update
         } catch (error) {
-            console.error("Error updating coupon:", error);
+            console.error("Error updating status:", error);
         }
     };
 
@@ -102,7 +101,7 @@ const ManageTables = () => {
                         <TableBody>
                             {tablesList.map((table, index) => (
                                 <TableRow
-                                    key={table.id}
+                                    key={index}
                                     sx={{
                                         backgroundColor: index % 2 === 0 ? "white" : "lightgrey",
                                         "&:hover td": {

@@ -25,10 +25,11 @@ const AdminHeaderComponent = () => {
 
     const navItems = [
         { label: "Admin Dashboard", route: "/admindashboard" },
+        { label: "Add Menu", route: "/add-menu" },
         { label: "Manage Waiters", route: "/manage-waiter" },
         { label: "Manage Table", route: "/manage-table" },
-        { label: "Add Menu", route: "/add-menu" },
         { label: "Manage Menu", route: "/manage-menu" },
+        { label: "Track Bills", route: "/track-bills" },
         
         { isComponent: true, component: <LogoutButtonComp /> },
     ];

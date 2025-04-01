@@ -8,12 +8,14 @@ import { db } from "../services/firebase";
 import waiterIcon from "../data/images/waiterIcon.png";
 import tableIcon from "../data/images/tableIcon.png";
 import menuIcon from "../data/images/menuIcon.png";
+import billIcon from "../data/images/billIcon.png";
 import { fontStyleB } from "../data/contents/QRStyles";
 
 const AdminDashboard = () => {
     const [waitersCount, setWaitersCount] = useState(0);
     const [tablesCount, setTablesCount] = useState(0);
     const [menuCount, setMenuCount] = useState(0);
+    const [billsCount, setBillsCount] = useState(0);
     const navigate = useNavigate();
 
     const user = LsService.getItem("user");
@@ -29,6 +31,7 @@ const AdminDashboard = () => {
         fetchWaitersData();
         fetchTablesData();
         fetchMenuData();
+        fetchBillsData();
     }, []);
 
     const fetchWaitersData = async () => {
@@ -40,7 +43,7 @@ const AdminDashboard = () => {
             // console.log(querySnapshot.size);
             setWaitersCount(querySnapshot.size);
         } catch (error) {
-            console.error("Error fetching waiters list:", error);
+            console.error("Error fetching waiters length:", error);
         }
     };
 
@@ -52,7 +55,7 @@ const AdminDashboard = () => {
             // console.log(querySnapshot.size); 
             setTablesCount(querySnapshot.size);
         } catch (error) {
-            console.error("Error fetching waiters list:", error);
+            console.error("Error fetching tables length:", error);
         }
     };
 
@@ -64,7 +67,19 @@ const AdminDashboard = () => {
             // console.log(querySnapshot.size); 
             setMenuCount(querySnapshot.size);
         } catch (error) {
-            console.error("Error fetching waiters list:", error);
+            console.error("Error fetching menu length:", error);
+        }
+    };
+
+    const fetchBillsData = async () => {
+        try {
+            const billsCollection = collection(db, "bills");
+            const b = query(billsCollection);
+            const querySnapshot = await getDocs(b);
+            // console.log(querySnapshot.size); 
+            setBillsCount(querySnapshot.size);
+        } catch (error) {
+            console.error("Error fetching bills length:", error);
         }
     };
 
@@ -131,7 +146,23 @@ const AdminDashboard = () => {
                                 ml: 3,
                             }}
                         />
-                        <Typography sx={{ fontWeight: "bold", fontSize: "3rem" }}>{tablesCount}</Typography>
+                        <Typography sx={{ fontWeight: "bold", fontSize: "3rem" }}>{menuCount}</Typography>
+                    </Box>
+                </Card>
+                <Card sx={{ p: 3.5, cursor:"pointer" }} onClick={()=>navigate("/track-bills")}>
+                    <Typography sx={{ ...fontStyleB }}>
+                        Total Bills
+                    </Typography>
+                    <Box sx={{ display: "flex", gap: "2rem", mx: "1rem" }}>
+                        <Box component="img"
+                            alt="icon"
+                            src={billIcon}
+                            sx={{
+                                width: "80px",
+                                ml: 3,
+                            }}
+                        />
+                        <Typography sx={{ fontWeight: "bold", fontSize: "3rem" }}>{billsCount}</Typography>
                     </Box>
                 </Card>
             </Box>

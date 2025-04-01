@@ -1,5 +1,4 @@
 import React from "react";
-import { Box, Button, Typography } from "@mui/material";
 import withRouter from "../components/withRouter";
 import BaseComponent from "../components/BaseComponent";
 import CustomerMenuHeader from "./CustomerMenuHeader";
@@ -12,7 +11,6 @@ class CustomerMenu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            // theme: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
             isOrderNCallWaiterDisabled: false,
         };
     }
@@ -23,18 +21,13 @@ class CustomerMenu extends React.Component {
 
         this.setState({ isOrderNCallWaiterDisabled: true });
 
-        // const orderConnect = [
-        //     ...(orderData.flat(Infinity)), // Flattens nested arrays to any depth
-        //     this.props.params,
-        // ];
-
         try {
             const menuRef = doc(db, "table", this.props.params.id);
             await updateDoc(menuRef, {
                 order_details: rows,
                 bill_details: orderData,
                 order_placed: true,
-                order_confirmed: false
+                order_confirmed: false,
             });
 
         } catch (error) {

@@ -21,12 +21,12 @@ const QRLoginPage = () => {
 
     useEffect(() => {
         if (user) {
-            console.log(user);
+            // console.log(user);
             if (user.type === "admin") {
-                console.log("admin");
+                // console.log("admin");
                 navigate("/admindashboard");
             } else if (user.type === "waiter") {
-                console.log("waiter");
+                // console.log("waiter");
                 navigate("/waiter-dashboard");
                 // navigate("/waiter");
             }
@@ -52,12 +52,17 @@ const QRLoginPage = () => {
                     type: userData.type,
                 });
                 if (userData.type === "admin") {
-                    console.log("admin");
+                    // console.log("admin");
                     navigate("/admindashboard");
                 } else if (userData.type === "waiter") {
-                    console.log("waiter");
-                    navigate("/waiter-dashboard");
-                    // navigate("/waiter");
+                    // console.log("waiter");
+                    if (userData.active) {
+                        navigate("/waiter-dashboard");
+                    } else {
+                        alert("Waiter job fired, You can't login, contact admin");
+                        // Optionally clear any stored user data
+                        LsService.removeItem("user");
+                    }
                 }
             }
         } catch (error) {
@@ -170,7 +175,7 @@ const QRLoginPage = () => {
                             }}
                             InputProps={{
                                 endAdornment: (
-                                    <InputAdornment position="end" 
+                                    <InputAdornment position="end"
                                     >
                                         <IconButton
                                             onClick={handleTogglePasswordVisibility}

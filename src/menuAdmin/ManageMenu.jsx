@@ -39,7 +39,7 @@ const ManageMenu = () => {
                 id: doc.id,
                 ...doc.data(),
             }));
-            console.log(fetchedmenu);
+            // console.log(fetchedmenu);
             
             setMenuList(fetchedmenu);
         } catch (error) {
@@ -53,7 +53,7 @@ const ManageMenu = () => {
             await updateDoc(menuRef, { active: !currentStatus });
             fetchMenuData(); // Refresh data after update
         } catch (error) {
-            console.error("Error updating coupon:", error);
+            console.error("Error updating status:", error);
         }
     };
 

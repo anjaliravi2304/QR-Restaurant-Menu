@@ -83,10 +83,8 @@ export default function PriceTable({ addedItems, isOrderNCallWaiterDisabled, onO
                     <TableRow>
                         <Cell colSpan={4} 
                         align={isOrderNCallWaiterDisabled ? "center":"right"}
-                        // align="right"                        
                         >
                             <Button
-                                // fullWidth
                                 variant="contained"
                                 color="success"
                                 onClick={(e) => {
@@ -94,7 +92,6 @@ export default function PriceTable({ addedItems, isOrderNCallWaiterDisabled, onO
                                     onOrderNCallWaiter(rows, billData);
                                 }
                                 }
-                                // sx={{ fontWeight: "bold", }}
                                 disabled={isOrderNCallWaiterDisabled}
                             >
                                 {isOrderNCallWaiterDisabled ? <CircularProgress size={24} sx={{ color: "white", fontWeight: "bold" }} /> : "Confirm & Call Waiter"}

@@ -52,7 +52,7 @@ const ManageWaiters = () => {
             await updateDoc(waiterRef, { active: !currentStatus });
             fetchWaitersData(); // Refresh data after update
         } catch (error) {
-            console.error("Error updating coupon:", error);
+            console.error("Error updating status:", error);
         }
     };
 

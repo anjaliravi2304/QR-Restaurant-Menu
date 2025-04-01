@@ -12,6 +12,9 @@ import ManageMenu from "./menuAdmin/ManageMenu";
 import CustomerMenu from "./qrMain/CustomerMenu";
 import WaiterDashboard from "./menuWaiter/WaiterDashboard";
 import ManageOrders from "./menuWaiter/ManageOrders";
+import ViewUpdateOrder from "./menuWaiter/ViewUpdateOrder";
+import WaiterViewBills from "./menuWaiter/WaiterViewBills";
+import TrackBills from "./menuAdmin/TrackBills";
 
 
 const Router = () => {
@@ -20,14 +23,7 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<QRLoginPage />} />
         <Route path="/404" element={<PageNotFound />} />
-        {/* <Route path="/profile/:id" element={<ProfilePage />} /> */}
         <Route path="/customer-menu/:id" element={<CustomerMenu />} />
-
-        {/* <Route path="/login" element={<LoginPage />} /> */}
-        {/* <Route path="/logintest" element={<LoginTest />} /> */}
-        {/* <Route path="/register-now" element={<PhoneSignUp />} /> */}
-
-        {/* <Route path="/compatible-phones" element={<CompatablePage />} /> */}
 
         <Route element={<ProtectedRoute />}>
           <Route path="/admindashboard" element={<AdminDashboard />} />
@@ -35,20 +31,12 @@ const Router = () => {
           <Route path="/manage-table" element={<ManageTables />} />
           <Route path="/add-menu" element={<AddMenuItems />} />
           <Route path="/manage-menu" element={<ManageMenu />} />
-
-
+          <Route path="/track-bills" element={<TrackBills />} />
 
           <Route path="/waiter-dashboard" element={<WaiterDashboard />} />
           <Route path="/manage-orders" element={<ManageOrders />} />
-
-          {/* <Route path="/fill-social-profiles" element={<SubmitMediaDetails />} /> */}
-          {/* <Route path="/select-nfctype" element={<NFCDesignPricing />} /> */}
-          {/* <Route path="/nfc-display" element={<NFCCardDisplay />} /> */}
-
-          {/* <Route path="/user-profile" element={<UserProfile />} /> */}
-          {/* <Route path="/update-personal-info" element={<UpdatePersonalDetails />} /> */}
-          {/* <Route path="/update-social-info" element={<UpdateSocialDetails />} /> */}
-          {/* <Route path="/update-other" element={<UpdateOther />} /> */}
+          <Route path="/view-update-order/:id" element={<ViewUpdateOrder />} />
+          <Route path="/waiter-view-bills" element={<WaiterViewBills />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>

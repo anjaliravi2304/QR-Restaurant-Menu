@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Typography, IconButton, Drawer, Divider } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
@@ -6,12 +6,23 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useMediaQuery } from '@mui/material';
 import companyLogo from "../../data/images/QRMenuPic.png";
 import LogoutButtonComp from '../LogoutButtonComp';
+import LsService from "../../services/localstorage";
 
 const WaiterHeaderComponent = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [drawerOpen, setDrawerOpen] = useState(false);
     const isMobile = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+
+    const user = LsService.getItem("user");
+
+    useEffect(() => {
+        if (user.type !== "waiter") {
+            console.log("not loggedin");
+            LsService.removeItem("user");
+            navigate("/");
+        }
+    }, []);
 
     const toggleDrawer = (open) => (event) => {
         if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -26,6 +37,7 @@ const WaiterHeaderComponent = () => {
     const navItems = [
         { label: "Waiter Dashboard", route: "/waiter-dashboard" },
         { label: "Manage Orders", route: "/manage-orders" },
+        { label: "View Bills", route: "/waiter-view-bills" },
         // { label: "Add Menu", route: "/add-menu" },
         // { label: "Manage Menu", route: "/manage-menu" },
         

@@ -50,12 +50,14 @@ const CustomerOrderStatus = ({ id }) => {
             const querySnapshot = await getDocs(q);
 
             const fetchedtable = querySnapshot.docs.map((doc) => ({
-                id: doc.id,
                 ...doc.data(),
             }));
             console.log(fetchedtable[0]);
 
             setTablesList(fetchedtable[0]);
+            if (!fetchedtable[0].order_placed) {
+                window.location.reload();
+            }
         } catch (error) {
             console.error("Error fetching tables list:", error);
         }

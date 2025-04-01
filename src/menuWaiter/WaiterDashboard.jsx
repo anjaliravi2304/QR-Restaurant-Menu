@@ -2,7 +2,6 @@ import { Box, Card, Typography } from "@mui/material";
 import WaiterHeaderComponent from "../components/mainComponents/WaiterHeaderComponent";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import LsService from "../services/localstorage";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../services/firebase";
 import waiterIcon from "../data/images/waiterIcon.png";
@@ -18,16 +17,8 @@ const WaiterDashboard = () => {
     // const [menuCount, setMenuCount] = useState(0);
     const navigate = useNavigate();
 
-    const user = LsService.getItem("user");
 
     useEffect(() => {
-        // console.log(user);
-
-        if (user.type !== "waiter") {
-            console.log("not loggedin");
-            LsService.removeItem("user");
-            navigate("/");
-        }
         fetchTablesData();
         // fetchWaitersData();
         // fetchMenuData();
@@ -54,7 +45,7 @@ const WaiterDashboard = () => {
             console.log(orderPlacedCount);
             setOrderCount(orderPlacedCount)
         } catch (error) {
-            console.error("Error fetching waiters list:", error);
+            console.error("Error fetching tables list:", error);
         }
     };
 

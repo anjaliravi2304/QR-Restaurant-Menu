@@ -46,21 +46,6 @@ const MenuDetails = ({ item, addedItems, onAddClicked, onRemoveClicked }) => {
                     )}
                 </Box>
             </Box>
-            {/* <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}> */}
-            {/* <Box sx={{ width: "5rem", height: "3rem", display: "flex", justifyContent: "center", alignItems: "center" }}> */}
-            {/* <Box component="img"
-                        sx={{
-                            width: "4rem", height: "4rem",
-                            // height: 233,
-                            // width: 350,
-                            // maxHeight: { xs: 233, md: 167 },
-                            // maxWidth: { xs: 350, md: 250 },
-                        }}
-                        alt="Food Item Image"
-                        src={item.imgurl} /> */}
-            {/* </Box> */}
-
-            {/* </Box> */}
         </AccordionDetails>
     )
 }

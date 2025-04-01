@@ -3,8 +3,8 @@ import { Box, Typography, styled } from '@mui/material';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import PriceTable from './PriceTable';
-import MenuDetails from './MenuDetails';
+import WaiterPriceTable from './WaiterPriceTable';
+import MenuDetails from '../qrMain/MenuDetails';
 import { useEffect } from 'react';
 import { collection, getDocs, query } from 'firebase/firestore';
 import { db } from "../services/firebase";
@@ -42,7 +42,7 @@ const AccordionSummary = styled((props) => (
     borderBottom: expanded ? '1px dashed #ffffff4f' : 'none',
 }));
 
-export default function CustomizedAccordions({isOrderNCallWaiterDisabled,  onOrderNCallWaiter}) {
+export default function WaiterMenuAccordions({ tableName, tableId}) {
     const [expanded, setExpanded] = React.useState('panel1');
     const [addedItems, setAddedItems] = React.useState([]);
     const [foodList, setFoodList] = React.useState([]);
@@ -105,14 +105,35 @@ export default function CustomizedAccordions({isOrderNCallWaiterDisabled,  onOrd
         }
     };
 
+    const handleRemoveItem = (itemToRemove) => {
+        console.log('Item to remove:', itemToRemove);
+        console.log('Current added items:', addedItems);
+        
+        const existingItemIndex = addedItems.findIndex(
+            (item) => item.itemName === itemToRemove.itemName && 
+                     item.itemPrice === itemToRemove.unit
+        );
+
+        if (existingItemIndex !== -1) {
+            const updatedItems = [...addedItems];
+            if (updatedItems[existingItemIndex].quantity > 1) {
+                updatedItems[existingItemIndex].quantity -= 1;
+            } else {
+                updatedItems.splice(existingItemIndex, 1);
+            }
+            setAddedItems(updatedItems);
+        }
+    };
+
     return (
         <Box sx={{
-            paddingLeft: 3, paddingRight: 3, paddingBottom: 1, 
-            backgroundColor: "black", 
-            minHeight: "calc(100vh - 59px)", color: "white",
+            paddingLeft: 3, paddingRight: 3, paddingBottom: 1,
+            backgroundColor: "black",
+            minHeight: "90vh", color: "white",
             display: { xs: "block", md: "flex" }, justifyContent: "space-between"
         }}>
             <Box sx={{ width: { xs: "100%", md: "49%" } }}>
+                <Typography sx={{ textAlign: "center", border: "1px dashed #ffffff4f", padding: "5px", borderRadius: "5px", mt: 2 }}>{tableName}</Typography>
                 {Array.from(new Set(foodList.map((item) => item.categoryType))).map((type, index) => (
                     <Box key={type} >
                         <Typography sx={{ fontWeight: "bold", fontSize: "15px", pl: 2, pt: 1, textAlign: "center" }}>{type}</Typography>
@@ -137,12 +158,14 @@ export default function CustomizedAccordions({isOrderNCallWaiterDisabled,  onOrd
                         </Accordion>
                     </Box>
                 ))}
+
             </Box>
+
             <Box sx={{ width: { xs: "100%", md: "49%" } }}>
-                {
-                    addedItems.length > 0 &&
-                    <PriceTable addedItems={addedItems} isOrderNCallWaiterDisabled={isOrderNCallWaiterDisabled} onOrderNCallWaiter={onOrderNCallWaiter} />
-                }
+                {/* { */}
+                {/* addedItems.length > 0 && */}
+                <WaiterPriceTable addedItems={addedItems} tableName={tableName} tableId={tableId} onRemoveItem={handleRemoveItem} />
+                {/* } */}
             </Box>
         </Box>
     );

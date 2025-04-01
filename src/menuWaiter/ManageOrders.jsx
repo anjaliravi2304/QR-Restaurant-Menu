@@ -1,8 +1,7 @@
-import { Box, TableContainer, Table, TableHead, TableRow, TableCell, Switch, TableBody, Paper, Button, Typography } from "@mui/material";
+import { Box, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, Button, Typography, CircularProgress } from "@mui/material";
 import WaiterHeaderComponent from "../components/mainComponents/WaiterHeaderComponent";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import LsService from "../services/localstorage";
 import { collection, query, where, getDocs, updateDoc, doc, orderBy } from "firebase/firestore";
 import { db } from "../services/firebase";
 
@@ -13,18 +12,10 @@ const headCellStyle = {
 
 const ManageOrders = () => {
     const [tablesList, setTablesList] = useState([]);
+    const [isVerify, setIsVerify] = useState(false);
     const navigate = useNavigate();
 
-    const user = LsService.getItem("user");
-
     useEffect(() => {
-        // console.log(user);
-
-        if (user.type !== "waiter") {
-            console.log("not loggedin");
-            LsService.removeItem("user");
-            navigate("/");
-        }
         fetchTablesData();
     }, []);
 
@@ -35,7 +26,6 @@ const ManageOrders = () => {
             const querySnapshot = await getDocs(q);
 
             const fetchedtables = querySnapshot.docs.map((doc) => ({
-                id: doc.id,
                 ...doc.data(),
             }));
 
@@ -44,6 +34,24 @@ const ManageOrders = () => {
             console.error("Error fetching tables list:", error);
         }
     };
+
+    const onVerifyClick = async (tableId) => {
+        try {
+            setIsVerify(true);
+            const tableRef = doc(db, "table", tableId);
+            await updateDoc(tableRef, {
+                waiter_confirm: true,
+                OrderId:""
+            });
+            fetchTablesData();
+            navigate(`/view-update-order/${tableId}`)
+        } catch (error) {
+            console.error("Error confirming waiter status:", error);
+            alert("An error occurred while confirming.");
+        } finally {
+            setIsVerify(false);
+        }
+    }
 
     return (
         <Box sx={{
@@ -77,7 +85,7 @@ const ManageOrders = () => {
                         <TableBody>
                             {tablesList.map((table, index) => (
                                 <TableRow
-                                    key={table.id}
+                                    key={index}
                                     sx={{
                                         backgroundColor: index % 2 === 0 ? "white" : "lightgrey",
                                         "&:hover td": {
@@ -105,7 +113,7 @@ const ManageOrders = () => {
                                                 fontWeight: "bold"
                                             }}
                                         >
-                                            {table.waiter_confirm ? "Confirmed" : "Pending"}
+                                            {table.order_placed ? (table.waiter_confirm ? "Confirmed" : "Pending") : "- -"}
                                         </Typography>
                                     </TableCell>
                                     <TableCell>
@@ -116,17 +124,21 @@ const ManageOrders = () => {
                                                 fontWeight: "bold"
                                             }}
                                         >
-                                            {table.order_confirmed ? "Confirmed" : "Pending"}
+                                            {table.order_placed ? (table.order_confirmed ? "Confirmed" : "Pending") : "- -"}
                                         </Typography>
                                     </TableCell>
 
                                     <TableCell>
-                                        <Button
-                                            variant="contained"
-                                            color="success"
-                                            disabled={table.order_placed ? false : true}
-                                            // onClick={() => onDisplay(table.table_id)}
-                                        >Verify Order</Button>
+                                        {
+                                            table.order_placed ?
+                                                <Button
+                                                    variant="contained"
+                                                    color="success"
+                                                    disabled={isVerify}
+                                                    onClick={() => onVerifyClick(table.table_id)}
+                                                >{isVerify ? <CircularProgress size={24} sx={{ color: "white", fontWeight: "bold" }} /> : "Verify Order"}</Button>
+                                                : "- -"
+                                        }
                                     </TableCell>
 
                                     <TableCell>
@@ -134,6 +146,7 @@ const ManageOrders = () => {
                                             variant="contained"
                                             color="success"
                                             onClick={() => window.open(`http://localhost:3000/customer-menu/${table.table_id}`)}
+                                            disabled={table.order_placed ? true : false}
                                         >Place Order</Button>
                                     </TableCell>
                                 </TableRow>
