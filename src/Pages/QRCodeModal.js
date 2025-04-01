@@ -8,7 +8,7 @@ const QRCodeModal = ({ open, onClose, qrid }) => {
   useEffect(() => {
     if (open === true) {
       // setQrData(`http://localhost:3000/QR-Restaurant-Menu/customer-menu/${qrid}`);
-      setQrData(`https://anjaliravi2304.github.io/QR-Restaurant-Menu/customer-menu/${qrid}`);
+      setQrData(`https://anjaliravi2304.github.io/QR-Restaurant-Menu/${qrid}`);
     }
   }, [open]);
 
