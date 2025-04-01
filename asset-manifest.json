@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/QR-Restaurant-Menu/static/css/main.f4581607.css",
-    "main.js": "/QR-Restaurant-Menu/static/js/main.ed094a44.js",
-    "static/js/453.c1604507.chunk.js": "/QR-Restaurant-Menu/static/js/453.c1604507.chunk.js",
-    "static/media/QRMenuPic.png": "/QR-Restaurant-Menu/static/media/QRMenuPic.a24c5e4bd6374df4a772.png",
-    "static/media/tableIcon.png": "/QR-Restaurant-Menu/static/media/tableIcon.392fe644c4f26778b064.png",
-    "static/media/menuIcon.png": "/QR-Restaurant-Menu/static/media/menuIcon.b5e8dcd4bdaca2b344ee.png",
-    "static/media/billIcon.png": "/QR-Restaurant-Menu/static/media/billIcon.da141a8d85bc51fd28f7.png",
-    "static/media/Loginicon.png": "/QR-Restaurant-Menu/static/media/Loginicon.8b442d1a0e5bb5af4e35.png",
-    "index.html": "/QR-Restaurant-Menu/index.html",
-    "main.f4581607.css.map": "/QR-Restaurant-Menu/static/css/main.f4581607.css.map",
-    "main.ed094a44.js.map": "/QR-Restaurant-Menu/static/js/main.ed094a44.js.map",
-    "453.c1604507.chunk.js.map": "/QR-Restaurant-Menu/static/js/453.c1604507.chunk.js.map"
+    "main.css": "/static/css/main.f4581607.css",
+    "main.js": "/static/js/main.c5801eb9.js",
+    "static/js/453.c1604507.chunk.js": "/static/js/453.c1604507.chunk.js",
+    "static/media/QRMenuPic.png": "/static/media/QRMenuPic.a24c5e4bd6374df4a772.png",
+    "static/media/tableIcon.png": "/static/media/tableIcon.392fe644c4f26778b064.png",
+    "static/media/menuIcon.png": "/static/media/menuIcon.b5e8dcd4bdaca2b344ee.png",
+    "static/media/billIcon.png": "/static/media/billIcon.da141a8d85bc51fd28f7.png",
+    "static/media/Loginicon.png": "/static/media/Loginicon.8b442d1a0e5bb5af4e35.png",
+    "index.html": "/index.html",
+    "main.f4581607.css.map": "/static/css/main.f4581607.css.map",
+    "main.c5801eb9.js.map": "/static/js/main.c5801eb9.js.map",
+    "453.c1604507.chunk.js.map": "/static/js/453.c1604507.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f4581607.css",
-    "static/js/main.ed094a44.js"
+    "static/js/main.c5801eb9.js"
   ]
 }
