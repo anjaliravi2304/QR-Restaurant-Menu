@@ -12,16 +12,11 @@ import { fontStyleB } from "../data/contents/QRStyles";
 const WaiterDashboard = () => {
     const [tablesCount, setTablesCount] = useState(0);
     const [orderCount, setOrderCount] = useState([]);
-
-    // const [waitersCount, setWaitersCount] = useState(0);
-    // const [menuCount, setMenuCount] = useState(0);
     const navigate = useNavigate();
 
 
     useEffect(() => {
         fetchTablesData();
-        // fetchWaitersData();
-        // fetchMenuData();
     }, []);
 
     const fetchTablesData = async () => {
@@ -49,18 +44,6 @@ const WaiterDashboard = () => {
         }
     };
 
-    // const fetchMenuData = async () => {
-    //     try {
-    //         const menuCollection = collection(db, "menu");
-    //         const m = query(menuCollection);
-    //         const querySnapshot = await getDocs(m);
-    //         // console.log(querySnapshot.size); 
-    //         setMenuCount(querySnapshot.size);
-    //     } catch (error) {
-    //         console.error("Error fetching waiters list:", error);
-    //     }
-    // };
-
     return (
         <Box sx={{
             width: "100vw",
@@ -79,7 +62,7 @@ const WaiterDashboard = () => {
                 alignItems: "center",
                 gap: "1rem"
             }}>
-                <Card sx={{ p: 3.5, cursor: "pointer" }} onClick={() => navigate("/QR-Restaurant-Menu/manage-orders")}>
+                <Card sx={{ p: 3.5, cursor: "pointer" }} onClick={() => navigate("/manage-orders")}>
                     <Typography sx={{ ...fontStyleB }}>
                         Total Tables
                     </Typography>
@@ -95,7 +78,7 @@ const WaiterDashboard = () => {
                         <Typography sx={{ fontWeight: "bold", fontSize: "3rem" }}>{tablesCount}</Typography>
                     </Box>
                 </Card>
-                <Card sx={{ p: 3, cursor: "pointer" }} onClick={() => navigate("/QR-Restaurant-Menu/manage-orders")}>
+                <Card sx={{ p: 3, cursor: "pointer" }} onClick={() => navigate("/manage-orders")}>
                     <Typography sx={{ ...fontStyleB }}>
                         Order Received
                     </Typography>

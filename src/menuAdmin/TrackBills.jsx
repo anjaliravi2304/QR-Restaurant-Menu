@@ -1,8 +1,24 @@
 import { Box } from "@mui/material";
 import AdminHeaderComponent from "../components/mainComponents/AdminHeaderComponent";
 import ManageBills from "../components/ManageBills";
+import { useNavigate } from "react-router-dom";
+import LsService from "../services/localstorage";
+import { useEffect } from "react";
 
 const TrackBills = () => {
+const navigate = useNavigate();
+
+    const user = LsService.getItem("user");
+
+    useEffect(() => {
+        // console.log(user);
+
+        if (user.type !== "admin") {
+            console.log("not loggedin");
+            LsService.removeItem("user");
+            navigate("/");
+        }
+    }, []);
 
     return (
         <Box sx={{

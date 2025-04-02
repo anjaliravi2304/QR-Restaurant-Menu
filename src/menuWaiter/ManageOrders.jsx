@@ -44,7 +44,7 @@ const ManageOrders = () => {
                 OrderId:""
             });
             fetchTablesData();
-            navigate(`/QR-Restaurant-Menu/view-update-order/${tableId}`)
+            navigate(`/view-update-order/${tableId}`)
         } catch (error) {
             console.error("Error confirming waiter status:", error);
             alert("An error occurred while confirming.");
@@ -145,8 +145,8 @@ const ManageOrders = () => {
                                         <Button
                                             variant="contained"
                                             color="success"
-                                            onClick={() => window.open(`https://anjaliravi2304.github.io/QR-Restaurant-Menu/customer-menu/${table.table_id}`)}
-                                            // onClick={() => window.open(`http://localhost:3000/QR-Restaurant-Menu/customer-menu/${table.table_id}`)}
+                                            onClick={() => window.open(`https://anjaliravi2304.github.io/QR-Restaurant-Menu/#/customer-menu/${table.table_id}`)}
+                                            // onClick={() => window.open(`http://localhost:3000/customer-menu/${table.table_id}`)}
                                             disabled={table.order_placed ? true : false}
                                         >Place Order</Button>
                                     </TableCell>

@@ -24,10 +24,10 @@ const QRLoginPage = () => {
             // console.log(user);
             if (user.type === "admin") {
                 // console.log("admin");
-                //navigate("/QR-Restaurant-Menu/admindashboard");
+                navigate("/admindashboard");
             } else if (user.type === "waiter") {
                 // console.log("waiter");
-                // navigate("/QR-Restaurant-Menu/waiter-dashboard");
+                navigate("/waiter-dashboard");
                 // navigate("/waiter");
             }
         }
@@ -53,11 +53,11 @@ const QRLoginPage = () => {
                 });
                 if (userData.type === "admin") {
                     // console.log("admin");
-                    navigate("/QR-Restaurant-Menu/admindashboard");
+                    navigate("/admindashboard");
                 } else if (userData.type === "waiter") {
                     // console.log("waiter");
                     if (userData.active) {
-                        navigate("/QR-Restaurant-Menu/waiter-dashboard");
+                        navigate("/waiter-dashboard");
                     } else {
                         alert("Waiter job fired, You can't login, contact admin");
                         // Optionally clear any stored user data
@@ -83,7 +83,7 @@ const QRLoginPage = () => {
                     display: { md: "none", xs: "block" },
                     pl: 2, paddingTop: "10px"
                 }}
-                onClick={() => navigate("/QR-Restaurant-Menu/")} />
+                onClick={() => navigate("/")} />
 
             <Box
                 sx={{
@@ -109,7 +109,7 @@ const QRLoginPage = () => {
                                 // ml: 2,
                                 cursor: "pointer",
                             }}
-                            onClick={() => navigate("/QR-Restaurant-Menu/")}
+                            onClick={() => navigate("/")}
                         />
                     </Box>
                 </Box>

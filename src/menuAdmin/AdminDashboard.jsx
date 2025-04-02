@@ -21,12 +21,12 @@ const AdminDashboard = () => {
     const user = LsService.getItem("user");
 
     useEffect(() => {
-        console.log(user);
+        // console.log(user);
 
         if (user.type !== "admin") {
             console.log("not loggedin");
             LsService.removeItem("user");
-            navigate("/QR-Restaurant-Menu/");
+            navigate("/");
         }
         fetchWaitersData();
         fetchTablesData();
@@ -101,7 +101,7 @@ const AdminDashboard = () => {
                 alignItems:"center",
                 gap: "1rem"
             }}>
-                <Card sx={{ p: 3.5, cursor:"pointer" }} onClick={()=>navigate("/QR-Restaurant-Menu/manage-waiter")}>
+                <Card sx={{ p: 3.5, cursor:"pointer" }} onClick={()=>navigate("/manage-waiter")}>
                     <Typography sx={{ ...fontStyleB }}>
                         Total Waiters
                     </Typography>
@@ -117,7 +117,7 @@ const AdminDashboard = () => {
                         <Typography sx={{ fontWeight: "bold", fontSize: "3rem" }}>{waitersCount}</Typography>
                     </Box>
                 </Card>
-                <Card sx={{ p: 3.5, cursor:"pointer" }} onClick={()=>navigate("/QR-Restaurant-Menu/manage-table")}>
+                <Card sx={{ p: 3.5, cursor:"pointer" }} onClick={()=>navigate("/manage-table")}>
                     <Typography sx={{ ...fontStyleB }}>
                         Total Tables
                     </Typography>
@@ -133,7 +133,7 @@ const AdminDashboard = () => {
                         <Typography sx={{ fontWeight: "bold", fontSize: "3rem" }}>{tablesCount}</Typography>
                     </Box>
                 </Card>
-                <Card sx={{ p: 3, cursor:"pointer" }} onClick={()=>navigate("/QR-Restaurant-Menu/manage-menu")}>
+                <Card sx={{ p: 3, cursor:"pointer" }} onClick={()=>navigate("/manage-menu")}>
                     <Typography sx={{ ...fontStyleB }}>
                         Total Menu Items
                     </Typography>
@@ -149,7 +149,7 @@ const AdminDashboard = () => {
                         <Typography sx={{ fontWeight: "bold", fontSize: "3rem" }}>{menuCount}</Typography>
                     </Box>
                 </Card>
-                <Card sx={{ p: 3.5, cursor:"pointer" }} onClick={()=>navigate("/QR-Restaurant-Menu/track-bills")}>
+                <Card sx={{ p: 3.5, cursor:"pointer" }} onClick={()=>navigate("/track-bills")}>
                     <Typography sx={{ ...fontStyleB }}>
                         Total Bills
                     </Typography>

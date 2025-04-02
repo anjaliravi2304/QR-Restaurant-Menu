@@ -24,12 +24,12 @@ const AdminHeaderComponent = () => {
     const isActiveRoute = (route) => location.pathname === route;
 
     const navItems = [
-        { label: "Admin Dashboard", route: "/QR-Restaurant-Menu/admindashboard" },
-        { label: "Add Menu", route: "/QR-Restaurant-Menu/add-menu" },
-        { label: "Manage Waiters", route: "/QR-Restaurant-Menu/manage-waiter" },
-        { label: "Manage Table", route: "/QR-Restaurant-Menu/manage-table" },
-        { label: "Manage Menu", route: "/QR-Restaurant-Menu/manage-menu" },
-        { label: "Track Bills", route: "/QR-Restaurant-Menu/track-bills" },
+        { label: "Admin Dashboard", route: "/admindashboard" },
+        { label: "Add Menu", route: "/add-menu" },
+        { label: "Manage Waiters", route: "/manage-waiter" },
+        { label: "Manage Table", route: "/manage-table" },
+        { label: "Manage Menu", route: "/manage-menu" },
+        { label: "Track Bills", route: "/track-bills" },
         
         { isComponent: true, component: <LogoutButtonComp /> },
     ];
@@ -53,7 +53,7 @@ const AdminHeaderComponent = () => {
                     ml: 3,
                     cursor: "pointer",
                 }}
-                onClick={() => navigate("/QR-Restaurant-Menu/")}
+                onClick={() => navigate("/")}
             />
 
             {isMobile ? (

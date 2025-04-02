@@ -23,7 +23,7 @@ const ManageMenu = () => {
         if (user.type !== "admin") {
             console.log("not loggedin");
             LsService.removeItem("user");
-            navigate("/QR-Restaurant-Menu/");
+            navigate("/");
         }
         fetchMenuData();
     }, []);

@@ -6,6 +6,7 @@ import CustomizedAccordions from "./CustomizedAccordions";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
 import CustomerOrderStatus from "./CustomerOrderStatus";
+import FooterComponent from "./FooterComponent";
 
 class CustomerMenu extends React.Component {
     constructor(props) {
@@ -51,7 +52,7 @@ class CustomerMenu extends React.Component {
                         <CustomerOrderStatus id={data.table_id} /> :
                         <CustomizedAccordions isOrderNCallWaiterDisabled={this.state.isOrderNCallWaiterDisabled} onOrderNCallWaiter={this.onOrderNCallWaiter} />
                 }
-
+                {/* <FooterComponent /> */}
             </main >
 
         );
