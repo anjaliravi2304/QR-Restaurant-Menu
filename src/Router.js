@@ -15,15 +15,19 @@ import ManageOrders from "./menuWaiter/ManageOrders";
 import ViewUpdateOrder from "./menuWaiter/ViewUpdateOrder";
 import WaiterViewBills from "./menuWaiter/WaiterViewBills";
 import TrackBills from "./menuAdmin/TrackBills";
+import CustomerMenucopy from "./qrMain/CustomerMenucopy";
+import CustomerMenucopyb from "./qrMain/CustomerMenucopyb";
 
 
 const Router = () => {
   return (
     <UserAuthContextProvider>
       <Routes>
-        <Route path="/QR-Restaurant-Menu/#/" element={<QRLoginPage />} />
-        <Route path="/QR-Restaurant-Menu/#/404" element={<PageNotFound />} />
-        <Route path="/QR-Restaurant-Menu/#/customermenu/:id" element={<CustomerMenu />} />
+        <Route path="/" element={<QRLoginPage />} />
+        <Route path="/404" element={<PageNotFound />} />
+        <Route path="/customermenu/:id" element={<CustomerMenu />} />
+        <Route path="/customermenucopy/:id" element={<CustomerMenucopy />} />
+        <Route path="/customermenucopyb/:id" element={<CustomerMenucopyb />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path="/QR-Restaurant-Menu/admindashboard" element={<AdminDashboard />} />

@@ -11,15 +11,15 @@ const theme = createTheme();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <HelmetProvider>
+  // <HelmetProvider>
     <HashRouter>
-      <AuthProvider>
+      {/* <AuthProvider> */}
         <ThemeProvider theme={theme}>
           <App />
         </ThemeProvider>
-      </AuthProvider>
+      {/* </AuthProvider> */}
     </HashRouter>
-  </HelmetProvider>
+  // </HelmetProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -24,10 +24,10 @@ const QRLoginPage = () => {
             // console.log(user);
             if (user.type === "admin") {
                 // console.log("admin");
-                navigate("/QR-Restaurant-Menu/admindashboard");
+                //navigate("/QR-Restaurant-Menu/admindashboard");
             } else if (user.type === "waiter") {
                 // console.log("waiter");
-                navigate("/QR-Restaurant-Menu/waiter-dashboard");
+                // navigate("/QR-Restaurant-Menu/waiter-dashboard");
                 // navigate("/waiter");
             }
         }
