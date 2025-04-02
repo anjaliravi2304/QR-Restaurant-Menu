@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider } from './services/AuthProvider';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -12,13 +12,13 @@ const theme = createTheme();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <HelmetProvider>
-    <BrowserRouter>
+    <HashRouter>
       <AuthProvider>
         <ThemeProvider theme={theme}>
           <App />
         </ThemeProvider>
       </AuthProvider>
-    </BrowserRouter>
+    </HashRouter>
   </HelmetProvider>
 );
 
