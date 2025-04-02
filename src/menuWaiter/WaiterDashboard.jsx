@@ -134,7 +134,7 @@ const WaiterDashboard = () => {
                         <div key={index}>
                             {
                                 call.calling &&
-                                <Card sx={{ p: 2, cursor: "pointer" }}  >
+                                <Card sx={{ p: 2, cursor: "pointer" }}  onClick={() => navigate("/manage-orders")}>
                                     <Typography sx={{ ...fontStyleA }}>
                                         Calling Waiter From Table: <CircleNotificationsIcon color="success" fontSize="large" />
                                     </Typography>
