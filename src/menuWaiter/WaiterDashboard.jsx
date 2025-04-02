@@ -37,7 +37,7 @@ const WaiterDashboard = () => {
                 return count + (table.order_placed === true ? 1 : 0);
             }, 0);
 
-            console.log(orderPlacedCount);
+            // console.log(orderPlacedCount);
             setOrderCount(orderPlacedCount)
         } catch (error) {
             console.error("Error fetching tables list:", error);

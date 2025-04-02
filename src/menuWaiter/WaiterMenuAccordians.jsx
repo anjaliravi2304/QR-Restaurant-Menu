@@ -106,8 +106,8 @@ export default function WaiterMenuAccordions({ tableName, tableId}) {
     };
 
     const handleRemoveItem = (itemToRemove) => {
-        console.log('Item to remove:', itemToRemove);
-        console.log('Current added items:', addedItems);
+        // console.log('Item to remove:', itemToRemove);
+        // console.log('Current added items:', addedItems);
         
         const existingItemIndex = addedItems.findIndex(
             (item) => item.itemName === itemToRemove.itemName && 

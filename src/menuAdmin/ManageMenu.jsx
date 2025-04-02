@@ -18,10 +18,10 @@ const ManageMenu = () => {
     const user = LsService.getItem("user");
 
     useEffect(() => {
-        console.log(user);
+        // console.log(user);
 
         if (user.type !== "admin") {
-            console.log("not loggedin");
+            // console.log("not loggedin");
             LsService.removeItem("user");
             navigate("/");
         }

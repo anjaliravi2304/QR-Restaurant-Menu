@@ -41,7 +41,7 @@ class CustomerMenu extends React.Component {
     renderTable = (data) => {
         // console.log(data.table_id);
         // console.log(data.table_name);
-        console.log(data.order_placed);
+        // console.log(data.order_placed);
 
         return (
             <main className="customer-menu-page" ref={this.mainRef}>
@@ -59,7 +59,7 @@ class CustomerMenu extends React.Component {
     }
 
     render() {
-    console.log(this.props.params.id);
+    // console.log(this.props.params.id);
         return (
             <BaseComponent collectionName="table" render={this.renderTable} params={this.props.params.id} navigate={this.props.navigate} />
         );

@@ -38,8 +38,8 @@ const ManageBills = () => {
     };
 
     const onViewBillClick = (bill) => {
-        console.log(bill.type);
-        console.log(bill);
+        // console.log(bill.type);
+        // console.log(bill);
         setBillData(bill);
         setIsBill(!isBill);
     }

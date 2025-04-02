@@ -76,7 +76,7 @@ export default function WaiterPriceTable({ addedItems, tableName, tableId, onRem
     // console.log(billData);
 
     const onRemoveClick = (rowToRemove) => {
-        console.log(rowToRemove);
+        // console.log(rowToRemove);
         
         if (addedItems.some(item => 
             item.itemName === rowToRemove.itemName && 
@@ -108,7 +108,7 @@ export default function WaiterPriceTable({ addedItems, tableName, tableId, onRem
     };
 
     const onConfirmOrder = async (rows, billData) => {
-        console.log(billData);
+        // console.log(billData);
         // console.log(this.props.params);
         const randomId = generateRandomId();
 
@@ -131,7 +131,7 @@ export default function WaiterPriceTable({ addedItems, tableName, tableId, onRem
     }
 
     const onCheckOut = async (rows, billData) => {
-        console.log(billData);
+        // console.log(billData);
         setIsOrderCheckOut(true);
         try {
             // First check if this order is already billed

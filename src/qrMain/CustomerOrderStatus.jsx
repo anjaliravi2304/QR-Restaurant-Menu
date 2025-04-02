@@ -52,7 +52,7 @@ const CustomerOrderStatus = ({ id }) => {
             const fetchedtable = querySnapshot.docs.map((doc) => ({
                 ...doc.data(),
             }));
-            console.log(fetchedtable[0]);
+            // console.log(fetchedtable[0]);
 
             setTablesList(fetchedtable[0]);
             if (!fetchedtable[0].order_placed) {

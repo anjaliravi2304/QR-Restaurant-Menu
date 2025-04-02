@@ -24,7 +24,7 @@ const AdminDashboard = () => {
         // console.log(user);
 
         if (user.type !== "admin") {
-            console.log("not loggedin");
+            // console.log("not loggedin");
             LsService.removeItem("user");
             navigate("/");
         }

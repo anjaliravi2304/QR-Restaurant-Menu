@@ -18,7 +18,7 @@ const WaiterHeaderComponent = () => {
 
     useEffect(() => {
         if (user.type !== "waiter") {
-            console.log("not loggedin");
+            // console.log("not loggedin");
             LsService.removeItem("user");
             navigate("/");
         }
