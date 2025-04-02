@@ -7,16 +7,26 @@ import { db } from "../services/firebase";
 import waiterIcon from "../data/images/waiterIcon.png";
 import tableIcon from "../data/images/tableIcon.png";
 import menuIcon from "../data/images/menuIcon.png";
-import { fontStyleB } from "../data/contents/QRStyles";
+import { fontStyleA, fontStyleB } from "../data/contents/QRStyles";
+import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 
 const WaiterDashboard = () => {
     const [tablesCount, setTablesCount] = useState(0);
     const [orderCount, setOrderCount] = useState([]);
+    const [callNotify, setCcallNotify] = useState([]);
     const navigate = useNavigate();
-
 
     useEffect(() => {
         fetchTablesData();
+        fetchCallTablesData()
+
+        // Set up interval to call fetchCallTablesData every 3 minutes
+        const interval = setInterval(() => {
+            fetchCallTablesData();
+        }, 180000); // 180,000 milliseconds = 3 minutes
+
+        // Cleanup interval on component unmount
+        return () => clearInterval(interval);
     }, []);
 
     const fetchTablesData = async () => {
@@ -27,7 +37,6 @@ const WaiterDashboard = () => {
             setTablesCount(querySnapshot.size);
 
             const fetchedtables = querySnapshot.docs.map((doc) => ({
-                id: doc.id,
                 ...doc.data(),
             }));
 
@@ -37,8 +46,25 @@ const WaiterDashboard = () => {
                 return count + (table.order_placed === true ? 1 : 0);
             }, 0);
 
-            // console.log(orderPlacedCount);
             setOrderCount(orderPlacedCount)
+        } catch (error) {
+            console.error("Error fetching tables list:", error);
+        }
+    };
+
+    const fetchCallTablesData = async () => {
+        try {
+            const tablesCollection = collection(db, "callWaiter");
+            const c = query(tablesCollection);
+            const querySnapshot = await getDocs(c);
+
+            const fetchedtables = querySnapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            console.log(fetchedtables);
+
+            setCcallNotify(fetchedtables)
         } catch (error) {
             console.error("Error fetching tables list:", error);
         }
@@ -95,7 +121,32 @@ const WaiterDashboard = () => {
                     </Box>
                 </Card>
             </Box>
-        </Box>
+            <Box p={1} />
+            <Box sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: 'start',
+                alignItems: "center",
+                gap: "1rem"
+            }}>
+                {
+                    callNotify.map((call, index) => (
+                        <div key={index}>
+                            {
+                                call.calling &&
+                                <Card sx={{ p: 2, cursor: "pointer" }}  >
+                                    <Typography sx={{ ...fontStyleA }}>
+                                        Calling Waiter From Table: <CircleNotificationsIcon color="success" fontSize="large" />
+                                    </Typography>
+
+                                    <Typography sx={{ fontWeight: "bold", fontSize: "2rem" }}>{call.tableName}</Typography>
+                                </Card>
+                            }
+                        </div>
+                    ))
+                }
+            </Box>
+        </Box >
     )
 }
 export default WaiterDashboard;
