@@ -86,7 +86,7 @@ const AdminDashboard = () => {
     return (
         <Box sx={{
             width: "100vw",
-            height: "100vh",
+            minHeight: "100vh",
             background: "black",
             color: "white"
         }}>

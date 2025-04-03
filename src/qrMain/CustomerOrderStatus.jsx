@@ -74,10 +74,9 @@ const CustomerOrderStatus = ({ id }) => {
             justifyContent: "start",
             gap: "1rem",
             color: "white",
-            p: 2,
         }}
         >
-            <TableContainer component={Paper} sx={{ maxWidth: { xs: "100%", md: "60%" } }}>
+            <TableContainer component={Paper} sx={{ maxWidth: { xs: "96%", md: "60%" }, p:2 }}>
                 <Table>
                     <TableHead sx={{ backgroundColor: "#3e8596" }}>
                         <TableRow>
