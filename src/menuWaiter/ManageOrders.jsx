@@ -145,8 +145,8 @@ const ManageOrders = () => {
                                         <Button
                                             variant="contained"
                                             color="success"
-                                            onClick={() => window.open(`https://anjaliravi2304.github.io/QR-Restaurant-Menu/#/customer-menu/${table.table_id}`)}
-                                            // onClick={() => window.open(`http://localhost:3000/customer-menu/${table.table_id}`)}
+                                            onClick={() => window.open(`https://anjaliravi2304.github.io/QR-Restaurant-Menu/#/customermenu/${table.table_id}`)}
+                                            // onClick={() => window.open(`http://localhost:3000/customermenu/${table.table_id}`)}
                                             disabled={table.order_placed ? true : false}
                                         >Place Order</Button>
                                     </TableCell>
