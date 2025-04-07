@@ -121,7 +121,7 @@ const ManageTables = () => {
                                     <TableCell>
                                         <Switch
                                             checked={table.active}
-                                            onChange={() => toggleUsageStatus(table.id, table.active)}
+                                            onChange={() => toggleUsageStatus(table.table_id, table.active)}
                                             color="primary"
                                         />
                                     </TableCell>
