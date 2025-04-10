@@ -73,7 +73,7 @@ const ManageWaiters = () => {
                 py:2,
             }}
             >
-                <AddWaiters />
+                <AddWaiters fetchWaitersData={fetchWaitersData}/>
                 <Box p={1} />
                 <TableContainer component={Paper} sx={{ maxWidth: { xs: "100%", md: "60%" } }}>
                     <Table>

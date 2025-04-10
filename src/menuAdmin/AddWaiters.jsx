@@ -4,7 +4,7 @@ import { useState } from "react";
 import { collection, query, where, getDocs, addDoc, setDoc, doc } from "firebase/firestore";
 import { db } from "../services/firebase";
 
-const AddWaiters = () => {
+const AddWaiters = ({fetchWaitersData}) => {
     const [waiterName, setWaiterName] = useState("");
     const [loginId, setLoginId] = useState("");
     const [passwordCreation, setPasswordCreation] = useState("");
@@ -12,9 +12,68 @@ const AddWaiters = () => {
     const [successMsg, setSuccessMsg] = useState("");
     const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const [errors, setErrors] = useState({
+        waiterName: "",
+        loginId: "",
+        password: ""
+    });
 
     const handleTogglePasswordVisibility = () => {
         setShowPassword((prev) => !prev);
+    };
+
+    const validateWaiterName = (name) => {
+        if (name.length < 4) {
+            return "Name must be at least 4 characters long";
+        }
+        const spaceCount = (name.match(/ /g) || []).length;
+        if (spaceCount > 4) {
+            return "Name cannot have more than 4 spaces";
+        }
+        return "";
+    };
+
+    const validateLoginId = (id) => {
+        if (id.length < 4) {
+            return "Login ID must be at least 4 characters long";
+        }
+        const spaceCount = (id.match(/ /g) || []).length;
+        if (spaceCount > 4) {
+            return "Login ID cannot have more than 4 spaces";
+        }
+        return "";
+    };
+
+    const validatePassword = (password) => {
+        if (password.length < 6) {
+            return "Password must be at least 6 characters long";
+        }
+        const hasLetter = /[a-zA-Z]/.test(password);
+        const hasNumber = /[0-9]/.test(password);
+        const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+        
+        if (!hasLetter || !hasNumber || !hasSpecial) {
+            return "Password must contain letters, numbers, and special characters";
+        }
+        return "";
+    };
+
+    const handleWaiterNameChange = (e) => {
+        const value = e.target.value;
+        setWaiterName(value);
+        setErrors(prev => ({...prev, waiterName: validateWaiterName(value)}));
+    };
+
+    const handleLoginIdChange = (e) => {
+        const value = e.target.value;
+        setLoginId(value);
+        setErrors(prev => ({...prev, loginId: validateLoginId(value)}));
+    };
+
+    const handlePasswordChange = (e) => {
+        const value = e.target.value;
+        setPasswordCreation(value);
+        setErrors(prev => ({...prev, password: validatePassword(value)}));
     };
 
     const onCreateWaiter = async () => {
@@ -45,8 +104,11 @@ const AddWaiters = () => {
 
             // Update the same document with its UID
             await setDoc(doc(db, "admin", waiterRef.id), { uid: waiterRef.id }, { merge: true });
+            fetchWaitersData();
             setSuccessMsg("Waiter added successfully.");
-
+            setWaiterName("");
+            setLoginId("");
+            setPasswordCreation("");
         } catch (error) {
             console.error("Error creating waiter:", error);
             alert("An error occurred while creating the waiter.");
@@ -75,9 +137,10 @@ const AddWaiters = () => {
                     variant="outlined"
                     label="Waiter Name"
                     value={waiterName}
-                    onChange={(e) => setWaiterName(e.target.value)}
-                    sx={{ mt: 2, 
-                    }}
+                    onChange={handleWaiterNameChange}
+                    error={!!errors.waiterName}
+                    helperText={errors.waiterName}
+                    sx={{ mt: 2 }}
                     inputProps={{
                         style: { textAlign: "center", fontWeight: "bold" },
                     }}
@@ -87,10 +150,10 @@ const AddWaiters = () => {
                     variant="outlined"
                     label="Login ID"
                     value={loginId}
-                    onChange={(e) => setLoginId(e.target.value)}
-                    sx={{
-                        mt: 2, 
-                    }}
+                    onChange={handleLoginIdChange}
+                    error={!!errors.loginId}
+                    helperText={errors.loginId}
+                    sx={{ mt: 2 }}
                     inputProps={{
                         maxLength: 15,
                         style: { textAlign: "center", fontWeight: "bold" },
@@ -102,9 +165,10 @@ const AddWaiters = () => {
                     label="Password"
                     type={showPassword ? "text" : "password"}
                     value={passwordCreation}
-                    onChange={(e) => setPasswordCreation(e.target.value)}
-                    sx={{ mt: 2, 
-                    }}
+                    onChange={handlePasswordChange}
+                    error={!!errors.password}
+                    helperText={errors.password}
+                    sx={{ mt: 2 }}
                     inputProps={{
                         maxLength: 15,
                         style: { textAlign: "center", fontWeight: "bold" },

@@ -3,11 +3,28 @@ import { useState } from "react";
 import { collection, query, where, getDocs, addDoc, setDoc, doc } from "firebase/firestore";
 import { db } from "../services/firebase";
 
-const AddTables = () => {
+const AddTables = ({fetchTablesData}) => {
     const [tableName, setTableName] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
     const [successMsg, setSuccessMsg] = useState("");
     const [loading, setLoading] = useState(false);
+    const [tableNameError, setTableNameError] = useState("");
+
+    const validateTableName = (name) => {
+        if (!name || name.trim() === "") {
+            return "Table name cannot be empty";
+        }
+        if (!/[a-zA-Z0-9]/.test(name)) {
+            return "Table name must contain at least one letter or number";
+        }
+        return "";
+    };
+
+    const handleTableNameChange = (e) => {
+        const value = e.target.value;
+        setTableName(value);
+        setTableNameError(validateTableName(value));
+    };
 
     const onCreateTable = async () => {
         setLoading(true);
@@ -34,8 +51,9 @@ const AddTables = () => {
 
             // Update the same document with its UID
             await setDoc(doc(db, "table", tableRef.id), { table_id: tableRef.id }, { merge: true });
+            fetchTablesData();
             setSuccessMsg("Table added successfully.");
-
+            setTableName("");
         } catch (error) {
             console.error("Error creating table:", error);
             alert("An error occurred while creating the table.");
@@ -64,7 +82,9 @@ const AddTables = () => {
                     variant="outlined"
                     label="Table Name"
                     value={tableName}
-                    onChange={(e) => setTableName(e.target.value)}
+                    onChange={handleTableNameChange}
+                    error={!!tableNameError}
+                    helperText={tableNameError}
                     sx={{ mt: 2 }}
                     inputProps={{
                         style: { textAlign: "center", fontWeight: "bold" },

@@ -11,7 +11,12 @@ const AddMenuItems = () => {
     const [categoryType, setCategoryType] = useState("");
     const [itemName, setItemName] = useState("");
     const [isVeg, setIsVeg] = useState(true);
-    const [itemPrice, setItemPrice] = useState(0);
+    const [itemPrice, setItemPrice] = useState(1);
+    const [errors, setErrors] = useState({
+        categoryType: "",
+        itemName: "",
+        itemPrice: ""
+    });
 
     const [newItemUrlImage, setNewItemUrlImage] = useState(null);
 
@@ -37,6 +42,45 @@ const AddMenuItems = () => {
         const storageRef = ref(storage, path);
         await uploadBytes(storageRef, file);
         return getDownloadURL(storageRef);
+    };
+
+    const validateCategoryType = (value) => {
+        if (!value || value.trim() === "") {
+            return "Category name cannot be empty";
+        }
+        return "";
+    };
+
+    const validateItemName = (value) => {
+        if (!value || value.trim() === "") {
+            return "Item name cannot be empty";
+        }
+        return "";
+    };
+
+    const validateItemPrice = (value) => {
+        if (value === 0) {
+            return "Price cannot be zero";
+        }
+        return "";
+    };
+
+    const handleCategoryTypeChange = (e) => {
+        const value = e.target.value;
+        setCategoryType(value);
+        setErrors(prev => ({...prev, categoryType: validateCategoryType(value)}));
+    };
+
+    const handleItemNameChange = (e) => {
+        const value = e.target.value;
+        setItemName(value);
+        setErrors(prev => ({...prev, itemName: validateItemName(value)}));
+    };
+
+    const handleItemPriceChange = (e) => {
+        const value = parseInt(e.target.value.replace(/[^0-9]/g, ''), 10) || 0;
+        setItemPrice(value);
+        setErrors(prev => ({...prev, itemPrice: validateItemPrice(value)}));
     };
 
     const onAddItems = async () => {
@@ -79,7 +123,7 @@ const AddMenuItems = () => {
             // Reset form
             setCategoryType("");
             setItemName("");
-            setItemPrice(0);
+            setItemPrice(1);
             setIsVeg(true);
             setNewItemUrlImage(null);
 
@@ -121,10 +165,10 @@ const AddMenuItems = () => {
                         variant="outlined"
                         label="Category Name"
                         value={categoryType}
-                        onChange={(e) => setCategoryType(e.target.value)}
-                        sx={{
-                            mt: 2,
-                        }}
+                        onChange={handleCategoryTypeChange}
+                        error={!!errors.categoryType}
+                        helperText={errors.categoryType}
+                        sx={{ mt: 2 }}
                         inputProps={{
                             style: { textAlign: "center", fontWeight: "bold" },
                         }}
@@ -134,8 +178,10 @@ const AddMenuItems = () => {
                         variant="outlined"
                         label="Item Name"
                         value={itemName}
-                        onChange={(e) => setItemName(e.target.value)}
-                        sx={{ mt: 2, }}
+                        onChange={handleItemNameChange}
+                        error={!!errors.itemName}
+                        helperText={errors.itemName}
+                        sx={{ mt: 2 }}
                         inputProps={{
                             maxLength: 20,
                             style: { textAlign: "center", fontWeight: "bold" },
@@ -161,10 +207,11 @@ const AddMenuItems = () => {
                         fullWidth
                         label="Price"
                         variant="outlined"
-                        sx={{ mt: 2, }}
-                        // margin="normal"
+                        sx={{ mt: 2 }}
                         value={itemPrice}
-                        onChange={(e) => setItemPrice(parseInt(e.target.value.replace(/[^0-9]/g, ''), 10) || 0)} // Convert to integer
+                        onChange={handleItemPriceChange}
+                        error={!!errors.itemPrice}
+                        helperText={errors.itemPrice}
                         inputProps={{
                             maxLength: 4,
                             inputMode: "numeric",

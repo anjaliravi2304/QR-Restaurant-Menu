@@ -85,7 +85,7 @@ const ManageTables = () => {
                 py: 2,
             }}
             >
-                <AddTables />
+                <AddTables fetchTablesData={fetchTablesData} />
                 <Box p={1} />
                 <QRCodeModal open={openQR} onClose={handleCloseQR} qrid={qrID} />
                 <TableContainer component={Paper} sx={{ maxWidth: { xs: "100%", md: "60%" } }}>
