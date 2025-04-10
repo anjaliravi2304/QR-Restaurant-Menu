@@ -48,7 +48,7 @@ const QRLoginPage = () => {
                 const userData = querySnapshot.docs[0].data();
                 // Store user data in local storage
                 LsService.setItem("user", {
-                    login_id: loginId,
+                    login_id: userData.login_id,
                     type: userData.type,
                 });
                 if (userData.type === "admin") {

@@ -35,6 +35,7 @@ function subtotal(items) {
 export default function WaiterPriceTable({ addedItems, tableName, tableId, onRemoveItem }) {
     // console.log(tableName);
     const [tablesList, setTablesList] = useState([]);
+    const [isOrderDecline, setIsOrderDecline] = useState(false);
     const [isOrderConfirmed, setIsOrderConfirmed] = useState(false);
     const [isOrderCheckOut, setIsOrderCheckOut] = useState(false);
     const navigate = useNavigate();
@@ -77,19 +78,19 @@ export default function WaiterPriceTable({ addedItems, tableName, tableId, onRem
 
     const onRemoveClick = (rowToRemove) => {
         // console.log(rowToRemove);
-        
-        if (addedItems.some(item => 
-            item.itemName === rowToRemove.itemName && 
-            item.quantity === rowToRemove.qty && 
+
+        if (addedItems.some(item =>
+            item.itemName === rowToRemove.itemName &&
+            item.quantity === rowToRemove.qty &&
             item.itemPrice === rowToRemove.unit)) {
             onRemoveItem(rowToRemove);
-        } 
+        }
         // If it's from order_details
         else if (tablesList.order_details) {
-            const updatedOrderDetails = tablesList.order_details.filter(item => 
-                !(item.itemName === rowToRemove.itemName && 
-                  item.qty === rowToRemove.qty && 
-                  item.price === rowToRemove.price)
+            const updatedOrderDetails = tablesList.order_details.filter(item =>
+                !(item.itemName === rowToRemove.itemName &&
+                    item.qty === rowToRemove.qty &&
+                    item.price === rowToRemove.price)
             );
             setTablesList({
                 ...tablesList,
@@ -106,6 +107,27 @@ export default function WaiterPriceTable({ addedItems, tableName, tableId, onRem
         }
         return result;
     };
+
+    const onDeclineOrder = async () => {
+        try {
+            setIsOrderDecline(true);
+            const menuRef = doc(db, "table", tableId);
+            await updateDoc(menuRef, {
+                order_details: [],
+                order_confirmed: false,
+                bill_details: [],
+                order_placed: false,
+                waiter_confirm: false,
+                OrderId: ""
+            });
+            navigate("/manage-orders");
+        } catch (error) {
+            console.error("Error confirming order:", error);
+            alert("An error occurred while confirming order.");
+        } finally {
+            setIsOrderDecline(false);
+        }
+    }
 
     const onConfirmOrder = async (rows, billData) => {
         // console.log(billData);
@@ -237,7 +259,21 @@ export default function WaiterPriceTable({ addedItems, tableName, tableId, onRem
                         <Cell colSpan={2} align="right">{ccyFormat(invoiceTotal)}</Cell>
                     </TableRow>
                     <TableRow sx={{ background: "gray" }}>
-                        <Cell colSpan={2} align="left">
+                        <Cell align="left">
+                            <Button
+                                variant="contained"
+                                color="error"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    onDeclineOrder();
+                                }
+                                }
+                                disabled={tablesList.order_confirmed}
+                            >
+                                {isOrderDecline ? <CircularProgress size={24} sx={{ color: "white", fontWeight: "bold" }} /> : "Decline"}
+                            </Button>
+                        </Cell>
+                        <Cell colSpan={3} align="center">
                             <Button
                                 variant="contained"
                                 color="info"
@@ -251,7 +287,7 @@ export default function WaiterPriceTable({ addedItems, tableName, tableId, onRem
                                 {isOrderConfirmed ? <CircularProgress size={24} sx={{ color: "white", fontWeight: "bold" }} /> : "confirm Order"}
                             </Button>
                         </Cell>
-                        <Cell colSpan={3} align="right">
+                        <Cell align="right">
                             <Button
                                 variant="contained"
                                 color="success"
