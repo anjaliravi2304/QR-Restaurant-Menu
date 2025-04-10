@@ -118,7 +118,8 @@ export default function WaiterPriceTable({ addedItems, tableName, tableId, onRem
                 bill_details: [],
                 order_placed: false,
                 waiter_confirm: false,
-                OrderId: ""
+                OrderId: "",
+                order_declined: true,
             });
             navigate("/manage-orders");
         } catch (error) {

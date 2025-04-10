@@ -93,15 +93,15 @@ const AdminDashboard = () => {
             <AdminHeaderComponent />
             <Box sx={{ height: "10vh" }} ></Box>
             <Box p={1} />
-// body 
+            {/*  body starts here  */}
             <Box sx={{
                 display: "flex",
                 flexDirection: { xs: "column", md: "row" },
                 justifyContent: 'center',
-                alignItems:"center",
+                alignItems: "center",
                 gap: "1rem"
             }}>
-                <Card sx={{ p: 3.5, cursor:"pointer" }} onClick={()=>navigate("/manage-waiter")}>
+                <Card sx={{ p: 3.5, cursor: "pointer" }} onClick={() => navigate("/manage-waiter")}>
                     <Typography sx={{ ...fontStyleB }}>
                         Total Waiters
                     </Typography>
@@ -117,7 +117,7 @@ const AdminDashboard = () => {
                         <Typography sx={{ fontWeight: "bold", fontSize: "3rem" }}>{waitersCount}</Typography>
                     </Box>
                 </Card>
-                <Card sx={{ p: 3.5, cursor:"pointer" }} onClick={()=>navigate("/manage-table")}>
+                <Card sx={{ p: 3.5, cursor: "pointer" }} onClick={() => navigate("/manage-table")}>
                     <Typography sx={{ ...fontStyleB }}>
                         Total Tables
                     </Typography>
@@ -133,7 +133,7 @@ const AdminDashboard = () => {
                         <Typography sx={{ fontWeight: "bold", fontSize: "3rem" }}>{tablesCount}</Typography>
                     </Box>
                 </Card>
-                <Card sx={{ p: 3, cursor:"pointer" }} onClick={()=>navigate("/manage-menu")}>
+                <Card sx={{ p: 3, cursor: "pointer" }} onClick={() => navigate("/manage-menu")}>
                     <Typography sx={{ ...fontStyleB }}>
                         Total Menu Items
                     </Typography>
@@ -149,7 +149,7 @@ const AdminDashboard = () => {
                         <Typography sx={{ fontWeight: "bold", fontSize: "3rem" }}>{menuCount}</Typography>
                     </Box>
                 </Card>
-                <Card sx={{ p: 3.5, cursor:"pointer" }} onClick={()=>navigate("/track-bills")}>
+                <Card sx={{ p: 3.5, cursor: "pointer" }} onClick={() => navigate("/track-bills")}>
                     <Typography sx={{ ...fontStyleB }}>
                         Total Bills
                     </Typography>

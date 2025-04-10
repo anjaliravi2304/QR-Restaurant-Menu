@@ -58,6 +58,9 @@ const CustomerOrderStatus = ({ id }) => {
             if (!fetchedtable[0].order_placed) {
                 window.location.reload();
             }
+            if (fetchedtable[0].order_declined) {
+                alert("Order is Declined");
+            }
         } catch (error) {
             console.error("Error fetching tables list:", error);
         }
