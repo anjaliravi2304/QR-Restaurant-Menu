@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/QR-Restaurant-Menu/static/css/main.f4581607.css",
-    "main.js": "/QR-Restaurant-Menu/static/js/main.1b80a984.js",
+    "main.js": "/QR-Restaurant-Menu/static/js/main.2a36e0d7.js",
     "static/js/453.c1604507.chunk.js": "/QR-Restaurant-Menu/static/js/453.c1604507.chunk.js",
     "static/media/QRMenuPic.png": "/QR-Restaurant-Menu/static/media/QRMenuPic.a24c5e4bd6374df4a772.png",
     "static/media/tableIcon.png": "/QR-Restaurant-Menu/static/media/tableIcon.392fe644c4f26778b064.png",
@@ -10,11 +10,11 @@
     "static/media/Loginicon.png": "/QR-Restaurant-Menu/static/media/Loginicon.8b442d1a0e5bb5af4e35.png",
     "index.html": "/QR-Restaurant-Menu/index.html",
     "main.f4581607.css.map": "/QR-Restaurant-Menu/static/css/main.f4581607.css.map",
-    "main.1b80a984.js.map": "/QR-Restaurant-Menu/static/js/main.1b80a984.js.map",
+    "main.2a36e0d7.js.map": "/QR-Restaurant-Menu/static/js/main.2a36e0d7.js.map",
     "453.c1604507.chunk.js.map": "/QR-Restaurant-Menu/static/js/453.c1604507.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f4581607.css",
-    "static/js/main.1b80a984.js"
+    "static/js/main.2a36e0d7.js"
   ]
 }
